@@ -18,7 +18,19 @@ if (!filename) {
 }
 
 fs.watch(filename, function() {
-  let ls = spawn('ls', ['-lh', filename]);
-  ls.stdout.pipe(process.stdout);
+  let
+  // variables
+    ls = spawn('ls', ['-lh', filename]),
+    output = '';
+  // event listner - stdount = stream class
+  ls.stdout.on('data', function(chunk){
+    output += chunk.toString();
+  });
+  // event listner - on
+  ls.on('close', function(){
+    let parts = output.split(/\s+/);
+    console.dir([parts[0], parts[4], parts[8]]);
+  });
 });
+
 console.log("Now watching " + filename + " for changes...");
