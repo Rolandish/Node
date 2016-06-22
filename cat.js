@@ -1,3 +1,4 @@
+#!/usr/bin/env node --harmony
 /***
  * Excerpted from "Node.js the Right Way",
  * published by The Pragmatic Bookshelf.
@@ -7,10 +8,4 @@
  * Visit http://www.pragmaticprogrammer.com/titles/jwnode for more book information.
 ***/
 
-    const fs = require('fs');
-    fs.writeFile('target.txt', function (err) {
-      if (err) {
-        throw err;
-      }
-      console.log("File saved");
-    });
+require('fs').createReadStream(process.argv[2]).pipe(process.stdout);
