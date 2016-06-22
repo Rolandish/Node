@@ -1,4 +1,3 @@
-#!/usr/bin/env node --harmony
 /***
  * Excerpted from "Node.js the Right Way",
  * published by The Pragmatic Bookshelf.
@@ -8,4 +7,12 @@
  * Visit http://www.pragmaticprogrammer.com/titles/jwnode for more book information.
 ***/
 
-require('fs').createReadStream(process.argv[2]).pipe(process.stdout);
+const
+  fs = require('fs'),
+  stream = fs.createReadStream(process.argv[2]);
+stream.on('data', function(chunk) {
+  process.stdout.write(chunk);
+});
+stream.on('error', function(err) {
+  process.stderr.write("ERROR: " + err.message + "\n");
+});
