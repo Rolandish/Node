@@ -8,9 +8,9 @@
 ***/
 
     const fs = require('fs');
-    fs.readFile('target.txt', function (err, data) {
+    fs.writeFile('target.txt', function (err) {
       if (err) {
         throw err;
       }
-      console.log(data.toString());
+      console.log("File saved");
     });
