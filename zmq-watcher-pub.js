@@ -22,9 +22,9 @@ fs.watch(filename, function(){
 
 	// send message to any subscribers
 	publisher.send(JSON.stringify({
-	type: 'changed',
-	file: filename,
-	timestamp: Date.now()
+		type: 'changed',
+		file: filename,
+		timestamp: Date.now()
 	}));
 
 });
